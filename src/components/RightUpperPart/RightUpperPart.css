@@ -1,0 +1,24 @@
+.right-upper-part {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.profile-icon {
+  margin-right: 10px;
+}
+
+.profile-icon,
+.notification-icon {
+  width: 30px;
+  height: 30px;
+  color: white;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.profile-icon:hover,
+.notification-icon:hover {
+  color: #c084fc;
+  transform: scale(1.15);
+}

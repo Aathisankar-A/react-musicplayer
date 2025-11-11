@@ -1,0 +1,19 @@
+.left-upper-part {
+  display: flex;
+  align-items: center;
+  /* border : red solid 1px; */
+  height: 100px;
+}
+
+.logo {
+  /* width: 100%;
+  height: 100%; */
+  margin-left: 10px;
+  margin-right: 10px;
+  fill: black;
+  stroke: white;
+}
+
+.left-upper-part h2{
+  color: white;
+}
