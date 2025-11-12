@@ -1,0 +1,60 @@
+.player-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 35px;
+
+  background: #1a1a1a;
+  padding: 18px 0;
+  border-top: 1px solid #333;
+  border-bottom: 1px solid #333;
+
+  backdrop-filter: blur(4px);
+}
+
+.control-btn {
+  width: 45px;
+  height: 45px;
+  border-radius: 10px;
+
+  background: #2b2b2b;
+  border: 1px solid #444;
+  cursor: pointer;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  transition: 0.25s ease;
+}
+
+.control-btn:hover {
+  background: #3a3a3a;
+  transform: scale(1.1);
+  box-shadow: 0 0 12px rgba(192, 132, 252, 0.45);
+}
+
+.control-btn:nth-child(2) {
+  width: 60px;
+  height: 60px;
+
+  background: #333;
+  border-color: #555;
+}
+
+.control-btn:nth-child(2):hover {
+  background: #444;
+  transform: scale(1.12);
+}
+
+.control-icon {
+  width: 22px;
+  height: 22px;
+  color: white;
+  transition: 0.2s ease;
+}
+
+.main-icon {
+  width: 32px;
+  height: 32px;
+}
