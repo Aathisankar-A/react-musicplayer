@@ -1,0 +1,87 @@
+.right-panel {
+  width: 250px;
+  height: 100%;
+  overflow-y: auto;
+  background-color: black;
+  padding: 15px;
+  box-sizing: border-box;
+  border-left: 1px solid #444;
+}
+
+.right-title {
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: white;
+}
+
+.queue-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.queue-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px;
+
+  background-color: #111;
+  border-radius: 12px;
+
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+
+.queue-item:hover {
+  transform: translateY(-5px);
+  background-color: #1a1a1a;
+  box-shadow: 0 10px 20px rgba(255, 255, 255, 0.15);
+}
+
+.queue-img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+
+  border-radius: 10px;
+  border: 2px solid white;
+
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.queue-item:hover .queue-img {
+  transform: scale(1.07);
+  box-shadow: 0 8px 20px rgba(255, 255, 255, 0.25);
+}
+
+.queue-info {
+  display: flex;
+  flex-direction: column;
+  color: white;
+}
+
+.queue-title {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.queue-artist {
+  font-size: 12px;
+  color: #ccc;
+}
+
+/* Scrollbar styling */
+.right-panel::-webkit-scrollbar {
+  width: 8px;
+}
+
+.right-panel::-webkit-scrollbar-thumb {
+  background: #444;
+  border-radius: 10px;
+}
+
+.right-panel::-webkit-scrollbar-thumb:hover {
+  background: #666;
+}

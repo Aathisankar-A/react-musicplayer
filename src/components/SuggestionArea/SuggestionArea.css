@@ -1,0 +1,31 @@
+.suggestion-area {
+  background-color: black;
+  /* height: 350px;
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 15px;
+  overflow-y: auto; */
+
+  flex: 1;
+  overflow-y: auto;
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+
+  padding: 10px;
+}
+
+/* Scrollbar styling */
+.suggestion-area::-webkit-scrollbar {
+  width: 8px;
+}
+
+.suggestion-area::-webkit-scrollbar-thumb {
+  background: #444;
+  border-radius: 10px;
+}
+
+.suggestion-area::-webkit-scrollbar-thumb:hover {
+  background: #666;
+}
