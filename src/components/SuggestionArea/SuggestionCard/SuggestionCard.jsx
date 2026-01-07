@@ -21,9 +21,13 @@ export default function SuggestionCard({song, index}) {
         src={song.image} 
         alt={song.title}
       /> 
-      <button onClick={() => addToQueue(song)}>
+      <button 
+        onClick={() => addToQueue(song)}
+        className="add-queue-btn"
+        >
         Add to Queue
       </button>
+
       <p className="song-title">{song.title}</p>
     </div>
   )

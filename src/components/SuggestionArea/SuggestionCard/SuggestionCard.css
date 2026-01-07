@@ -34,3 +34,34 @@
   font-family: Arial, sans-serif;
   text-align: center;
 }
+
+.add-queue-btn {
+  width: 90%;
+  margin: 8px auto 0;
+  padding: 6px 10px;
+
+  display: block;
+  text-align: center;
+
+  background: transparent;
+  border: 1px solid #bb86fc;
+  color: #bb86fc;
+  border-radius: 6px;
+
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+
+  transition: all 0.25s ease;
+}
+
+.add-queue-btn:hover {
+  background: #bb86fc;
+  color: black;
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(187, 134, 252, 0.7);
+}
+
+.add-queue-btn:active {
+  transform: scale(0.93);
+}
