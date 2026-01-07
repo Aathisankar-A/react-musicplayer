@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useRef, useEffect } from "react";
 
 export const SongContext = createContext();
 
@@ -18,19 +18,34 @@ export default function SongProvider({ children }) {
     { id: 8, title: "Song 8", image: "/src/assets/song-card4.jpg" },
   ];
 
+  const audioRef = useRef(new Audio("/src/assets/sample.mp3"));
+
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [history, setHistory] = useState([]);
-
+  const [currentTime, setCurrentTime] = useState(0);
+  const [duration, setDuration] = useState(0);
 
   const currentSong = songs[currentIndex];
 
-  const play = () => setIsPlaying(true);
-  const pause = () => setIsPlaying(false);
-  const togglePlay = () => setIsPlaying((v) => !v);
+  const play = () => {
+    audioRef.current.play();
+    setIsPlaying(true);
+  };
+
+  const pause = () => {
+    audioRef.current.pause();
+    setIsPlaying(false);
+  };
+
+  const togglePlay = () => {
+    isPlaying ? pause() : play();
+  };
 
   const next = () => {
+    setHistory((h) => [...h, currentIndex]);
     setCurrentIndex((i) => (i + 1) % songs.length);
+    audioRef.current.currentTime = 0;
     play();
   };
 
@@ -39,11 +54,13 @@ export default function SongProvider({ children }) {
       const lastIndex = history[history.length - 1];
       setHistory((h) => h.slice(0, -1));
       setCurrentIndex(lastIndex);
+      audioRef.current.currentTime = 0;
       play();
     }
     else{
       // fallback normal previous
       setCurrentIndex(i => (i - 1 + songs.length) % songs.length);
+      audioRef.current.currentTime = 0;
       play();
     }
   };
@@ -53,9 +70,25 @@ export default function SongProvider({ children }) {
     if (index !== -1) {
       setHistory((h) => [...h, currentIndex]);  // save old index
       setCurrentIndex(index);
+      audioRef.current.currentTime = 0;
       play();
     }
   };
+
+  useEffect(() => {
+    const audio = audioRef.current;
+
+    const updateTime = () => setCurrentTime(audio.currentTime);
+    const updateDuration = () => setDuration(audio.duration || 0);
+
+    audio.addEventListener("timeupdate", updateTime);
+    audio.addEventListener("loadedmetadata", updateDuration);
+
+    return () => {
+      audio.removeEventListener("timeupdate", updateTime);
+      audio.removeEventListener("loadedmetadata", updateDuration);
+    };
+  }, []);
 
   return (
     <SongContext.Provider
@@ -72,6 +105,9 @@ export default function SongProvider({ children }) {
         next,
         prev,
         history,
+        currentTime,
+        duration,
+        audioRef
       }}
     >
       {children}

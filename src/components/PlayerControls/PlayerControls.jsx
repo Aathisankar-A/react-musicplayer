@@ -11,7 +11,7 @@ import { useQueue } from "../../Context/QueueContext/QueueContext.jsx";
 import "./PlayerControls.css";
 
 export default function PlayerControls() {
-  const { isPlaying, togglePlay, play, next: songNext, prev, setSongById } = useSong();
+  const { isPlaying, togglePlay, play, next: songNext, prev, setSongById, currentTime,duration, audioRef } = useSong();
   const { queue, removeFromQueue } = useQueue();
 
   // Spacebar shortcut
@@ -21,8 +21,14 @@ export default function PlayerControls() {
         e.preventDefault();
         togglePlay();
       }
-      if(e.code === "ArrowRight") handleNext();
-      if(e.code === "ArrowLeft") prev();
+      else if(e.code === "ArrowRight"){
+        e.preventDefault();
+        handleNext();
+      }
+      else if(e.code === "ArrowLeft"){
+        e.preventDefault();
+        prev();
+      }
     };
 
     window.addEventListener("keydown", handleKey);
@@ -42,23 +48,59 @@ export default function PlayerControls() {
   };
 
 
+  // helper for progress bar
+  const formatTime = (time) => {
+    if (!time) return "0:00";
+    const min = Math.floor(time / 60);
+    const sec = Math.floor(time % 60).toString().padStart(2, "0");
+    return `${min}:${sec}`;
+  };
+
+  // Progress Bar
+
   return (
-    <div className="player-controls">
-      <button className="control-btn" onClick={prev}>
-        <PrevIcon className="control-icon" />
-      </button>
+    <>
+      <div className="progress-container">
+        <span className="time">
+          {formatTime(currentTime)}
+        </span>
 
-      <button className="control-btn" onClick={togglePlay}>
-        {isPlaying ? (
-          <PauseIcon className="control-icon main-icon" />
-        ) : (
-          <PlayIcon className="control-icon main-icon" />
-        )}
-      </button>
+        <div
+          className="progress-bar"
+          onClick={(e) => {
+            const rect = e.currentTarget.getBoundingClientRect();
+            const percent = (e.clientX - rect.left) / rect.width;
+            audioRef.current.currentTime = percent * duration;
+          }}>
 
-      <button className="control-btn" onClick={handleNext}>
-        <NextIcon className="control-icon" />
-      </button>
-    </div>
+          <div
+            className="progress-fill"
+            style={{ width: `${(currentTime / duration) * 100 || 0}%` }}
+          />
+        </div>
+
+        <span className="time">
+          {formatTime(duration)}
+        </span>
+      </div>
+
+      <div className="player-controls">
+        <button className="control-btn" onClick={prev}>
+          <PrevIcon className="control-icon" />
+        </button>
+
+        <button className="control-btn" onClick={togglePlay}>
+          {isPlaying ? (
+            <PauseIcon className="control-icon main-icon" />
+          ) : (
+            <PlayIcon className="control-icon main-icon" />
+          )}
+        </button>
+
+        <button className="control-btn" onClick={handleNext}>
+          <NextIcon className="control-icon" />
+        </button>
+      </div>
+    </>
   );
 }
