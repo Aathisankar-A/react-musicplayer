@@ -17,3 +17,10 @@
   grid-template-columns: 250px 1fr 250px; /* left - middle - right */
   overflow: hidden; /* prevent global scrollbars */
 }
+
+.loader {
+  color: #bbb;
+  text-align: center;
+  padding: 20px;
+  font-size: 14px;
+}

@@ -1,10 +1,11 @@
 import React from 'react';
+import { lazy, Suspense } from "react";
 import './App.css';
 
 import UpperPart from '../UpperPart/UpperPart';
 import LeftPanel from '../LeftPanel/LeftPanel';
-import RightPanel from '../RightPanel/RightPanel';
 import MiddlePanel from '../MiddlePanel/MiddlePanel';
+const RightPanel = lazy(() => import("../RightPanel/RightPanel"));
 
 function App() {
   return (
@@ -13,7 +14,9 @@ function App() {
       <div className="center-part">
         <LeftPanel/>
         <MiddlePanel/>
-        <RightPanel/>
+        <Suspense fallback={<div className="loader">Loading queue...</div>}>
+          <RightPanel />
+        </Suspense>
       </div>
     </div>
   )
