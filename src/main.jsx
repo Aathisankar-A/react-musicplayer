@@ -6,15 +6,18 @@ import App from './components/App/App.jsx'
 import SongProvider from "./Context/SongContext/SongContext.jsx";
 import PlaylistProvider from "./Context/PlaylistContext/PlaylistContext.jsx";
 import QueueProvider from "./Context/QueueContext/QueueContext.jsx";
+import ViewProvider from "./Context/ViewContext/ViewContext.jsx";
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <SongProvider>
-      <QueueProvider>
-        <PlaylistProvider>
-          <App />
-        </PlaylistProvider>
-      </QueueProvider>
-    </SongProvider>
+    <ViewProvider>
+      <SongProvider>
+        <QueueProvider>
+          <PlaylistProvider>
+            <App />
+          </PlaylistProvider>
+        </QueueProvider>
+      </SongProvider>
+    </ViewProvider>
   </StrictMode>
 )
