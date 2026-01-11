@@ -7,7 +7,7 @@ export function useView() {
 }
 
 export default function ViewProvider({ children }) {
-  const [currentView, setCurrentView] = useState("for_you");
+  const [currentView, setCurrentView] = useState("");
   // default view
 
   return (
