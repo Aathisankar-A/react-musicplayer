@@ -12,7 +12,7 @@ import ForYou from "../Menu/ForYou/ForYou";
 import Podcast from "../Menu/Podcast/Podcast";
 import Top50 from "../Menu/Top50/Top50";
 
-const SuggestionArea = lazy(() => import("../SuggestionArea/SuggestionArea"));
+// const SuggestionArea = lazy(() => import("../SuggestionArea/SuggestionArea"));
 
 
 export default function MiddlePanel() {
