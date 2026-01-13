@@ -3,7 +3,7 @@
   align-items: center;
   justify-content: center;
   background-color: black;
-  height: 400px;
+  height: 300px;
   gap: 20px;
 }
 
@@ -31,13 +31,13 @@
 
 .prev img,
 .next img {
-  width: 200px;
-  height: 200px;
-}
+  width: 130px;
+  height: 130px;
+} 
 
 .running-song {
-  width: 390px;
-  height: 390px;
+  width: 250px;
+  height: 250px;
 }
 
 .prev img:hover,
