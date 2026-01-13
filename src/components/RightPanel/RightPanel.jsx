@@ -18,7 +18,7 @@ export default function RightPanel() {
           <p className="empty-text">Nothing in queue</p>
         )}
 
-        {queue.map((song, index) => (
+        {queue.map((song) => (
           <div
             key={song.id}
             className="queue-item"
