@@ -1,7 +1,9 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import './index.css'
+import { BrowserRouter } from 'react-router-dom';
+
 import App from './components/App/App.jsx'
+import './index.css'
 
 import SongProvider from "./Context/SongContext/SongContext.jsx";
 import PlaylistProvider from "./Context/PlaylistContext/PlaylistContext.jsx";
@@ -10,14 +12,16 @@ import ViewProvider from "./Context/ViewContext/ViewContext.jsx";
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <ViewProvider>
-      <SongProvider>
-        <QueueProvider>
-          <PlaylistProvider>
-            <App />
-          </PlaylistProvider>
-        </QueueProvider>
-      </SongProvider>
-    </ViewProvider>
+    <BrowserRouter>
+      <ViewProvider>
+        <SongProvider>
+          <QueueProvider>
+            <PlaylistProvider>
+              <App />
+            </PlaylistProvider>
+          </QueueProvider>
+        </SongProvider>
+      </ViewProvider>
+    </BrowserRouter>
   </StrictMode>
 )
