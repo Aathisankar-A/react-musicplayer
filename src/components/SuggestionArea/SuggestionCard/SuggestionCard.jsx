@@ -7,7 +7,7 @@ import './SuggestionCard.css';
 // import LeftUpperPart from '../LeftUpperPart/LeftUpperPart';
 
 export default function SuggestionCard({song, index}) {
-  const { setCurrentIndex, play } = useSong();
+  const { setCurrentIndex, playFromBegining } = useSong();
   const { addToQueue } = useQueue();
 
   return(
@@ -15,7 +15,7 @@ export default function SuggestionCard({song, index}) {
       <img
         onClick={() => {
           setCurrentIndex(index);
-          play();
+          playFromBegining();
         }}
         className="suggestion-card-image"
         src={song.image} 

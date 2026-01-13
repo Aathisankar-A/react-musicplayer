@@ -33,6 +33,11 @@ export default function SongProvider({ children }) {
     setIsPlaying(true);
   };
 
+    const playFromBegining = ()  => {
+    audioRef.current.currentTime = 0;
+    play();
+  }
+
   const pause = () => {
     audioRef.current.pause();
     setIsPlaying(false);
@@ -81,12 +86,19 @@ export default function SongProvider({ children }) {
     const updateTime = () => setCurrentTime(audio.currentTime);
     const updateDuration = () => setDuration(audio.duration || 0);
 
+    const handleEnded = () => {
+      next(); // Auto Play Next Song
+    };
+
+
     audio.addEventListener("timeupdate", updateTime);
     audio.addEventListener("loadedmetadata", updateDuration);
+    audio.addEventListener("ended", handleEnded);
 
     return () => {
       audio.removeEventListener("timeupdate", updateTime);
       audio.removeEventListener("loadedmetadata", updateDuration);
+      audio.removeEventListener("ended", handleEnded);
     };
   }, []);
 
@@ -100,6 +112,7 @@ export default function SongProvider({ children }) {
         setSongById,
         isPlaying,
         play,
+        playFromBegining,
         pause,
         togglePlay,
         next,
