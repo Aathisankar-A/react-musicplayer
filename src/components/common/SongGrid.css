@@ -1,0 +1,15 @@
+.song-grid-wrapper {
+  padding: 20px;
+}
+
+.section-title {
+  color: white;
+  font-size: 22px;
+  margin-bottom: 15px;
+}
+
+.song-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 20px;
+}
