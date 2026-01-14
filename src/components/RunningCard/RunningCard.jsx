@@ -1,20 +1,19 @@
 import React from "react";
-
 import { useSong } from "../../Context/SongContext/UseSong.jsx";
 import { useQueue } from "../../Context/QueueContext/QueueContext.jsx";
+import { usePlayerUI } from "../../Context/PlayerUIContext/PlayerUIContext.jsx";
 
-import './RunningCard.css';
+import "./RunningCard.css";
 
 export default function RunningCard() {
   const { songs, history, currentIndex } = useSong();
-  const {queue} = useQueue();
+  const { queue } = useQueue();
+  const { isMiniPlayer, setIsMiniPlayer } = usePlayerUI();
 
   const current = songs[currentIndex];
-  // const prev = songs[(currentIndex - 1 + songs.length) % songs.length];
 
   let prev;
-
-  if(history.length > 0){
+    if(history.length > 0){
     const lastIndex = history[history.length - 1];
     prev = songs[lastIndex];
   }
@@ -31,28 +30,42 @@ export default function RunningCard() {
     next = songs[(currentIndex + 1) % songs.length];
   }
 
-  return(
-    <div className="running-card">
-      <div className="prev">
-        <img
-          src={prev.image}
-          alt={prev.title}
-        />
-      </div>
+  return (
+    <div
+      className={`running-card ${isMiniPlayer ? "mini" : "full"}`}
+      onClick={() => {
+        if (isMiniPlayer) setIsMiniPlayer(false);
+      }}
+    >
+      {/* FULL PLAYER */}
+      {!isMiniPlayer && (
+        <>
+          <div className="prev">
+            <img src={prev.image} alt={prev.title} />
+          </div>
 
-        <img
-          className="running-song" 
-          src={current.image}
-          alt={current.title}
-        />
+          <img
+            className="running-song"
+            src={current.image}
+            alt={current.title}
+          />
 
-      <div className="next">
-        <img
-          src={next.image}
-          alt={next.title}
-        />
-      </div>
+          <div className="next">
+            <img src={next.image} alt={next.title} />
+          </div>
+        </>
+      )}
 
+      {/* MINI PLAYER */}
+      {isMiniPlayer && (
+        <div className="mini-content">
+          <img src={current.image} alt={current.title} />
+          <div className="mini-info">
+            <p className="mini-title">{current.title}</p>
+            <span className="mini-sub">Tap to expand</span>
+          </div>
+        </div>
+      )}
     </div>
-  )
+  );
 }
