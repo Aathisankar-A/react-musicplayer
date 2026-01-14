@@ -9,18 +9,21 @@ import SongProvider from "./Context/SongContext/SongContext.jsx";
 import PlaylistProvider from "./Context/PlaylistContext/PlaylistContext.jsx";
 import QueueProvider from "./Context/QueueContext/QueueContext.jsx";
 import ViewProvider from "./Context/ViewContext/ViewContext.jsx";
+import PlayerUIProvider from './Context/PlayerUIContext/PlayerUIContext.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
       <ViewProvider>
-        <SongProvider>
-          <QueueProvider>
-            <PlaylistProvider>
-              <App />
-            </PlaylistProvider>
-          </QueueProvider>
-        </SongProvider>
+        <PlayerUIProvider>
+          <SongProvider>
+            <QueueProvider>
+              <PlaylistProvider>
+                <App />
+              </PlaylistProvider>
+            </QueueProvider>
+          </SongProvider>
+        </PlayerUIProvider>
       </ViewProvider>
     </BrowserRouter>
   </StrictMode>
