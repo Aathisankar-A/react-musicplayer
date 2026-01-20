@@ -10,6 +10,7 @@ import PlaylistProvider from "./Context/PlaylistContext/PlaylistContext.jsx";
 import QueueProvider from "./Context/QueueContext/QueueContext.jsx";
 import ViewProvider from "./Context/ViewContext/ViewContext.jsx";
 import PlayerUIProvider from './Context/PlayerUIContext/PlayerUIContext.jsx';
+import SearchProvider from './Context/SearchContext/SearchContext.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -19,7 +20,9 @@ createRoot(document.getElementById('root')).render(
           <SongProvider>
             <QueueProvider>
               <PlaylistProvider>
-                <App />
+                <SearchProvider>
+                  <App />
+                </SearchProvider>
               </PlaylistProvider>
             </QueueProvider>
           </SongProvider>

@@ -3,6 +3,8 @@
 // }
 
 import SongGrid from "../../common/SongGrid";
+import { useContext } from "react";
+import { SearchContext } from "../../../Context/SearchContext/SearchContext.jsx";
 
 const podcastData = [
   {
@@ -18,5 +20,11 @@ const podcastData = [
 ];
 
 export default function Podcast() {
-  return <SongGrid title="🎙 Podcasts" songs={podcastData} />;
+  const { query } = useContext(SearchContext);
+
+  const filteredPodcasts = podcastData.filter(podcast =>
+    podcast.title.toLowerCase().includes(query.toLowerCase())
+  );
+
+  return <SongGrid title="🎙 Podcasts" songs={filteredPodcasts} />;
 }

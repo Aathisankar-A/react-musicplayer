@@ -23,6 +23,8 @@ export default function PlayerControls() {
   // Spacebar shortcut
   useEffect(() => {
     const handleKey = (e) => {
+      if (document.activeElement.tagName === 'INPUT') return; // Don't trigger if typing in input
+
       if (e.code === "Space") {
         e.preventDefault();
         togglePlay();
@@ -157,3 +159,4 @@ export default function PlayerControls() {
     </>
   );
 }
+
