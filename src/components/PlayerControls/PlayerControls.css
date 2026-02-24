@@ -89,3 +89,22 @@
   border-radius: 50%;
   pointer-events: none;
 }
+
+/* Like and Unlike  */
+.unlike-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.unlike-icon {
+  width: 22px;
+  height: 22px;
+  color: white;
+}
+
+.unlike-btn:hover .unlike-icon {
+  color: #c084fc;
+  transform: scale(1.2);
+}

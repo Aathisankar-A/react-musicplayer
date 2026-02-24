@@ -4,14 +4,20 @@ import PlayIcon from "../../assets/play-icon.svg?react";
 import PauseIcon from "../../assets/pause-icon.svg?react";
 import NextIcon from "../../assets/next-icon.svg?react";
 import PrevIcon from "../../assets/prev-icon.svg?react";
+import UnLikeIcon from "../../assets/heart-icon_1.svg?react";
+import LikeIcon from "../../assets/heart-fill-icon.svg?react";
 
 import { useSong } from "../../Context/SongContext/UseSong.jsx";
 import { useQueue } from "../../Context/QueueContext/QueueContext.jsx";
+import { usePlaylist } from "../../Context/PlaylistContext/PlaylistContext";
 
 import "./PlayerControls.css";
 
 export default function PlayerControls() {
   const { isPlaying, togglePlay, play, next: songNext, prev, setSongById, currentTime, duration, audioRef } = useSong();
+
+  const { currentSong } = useSong();
+  const { toggleLike, isLiked } = usePlaylist();
 
   const { queue, removeFromQueue } = useQueue();
 
@@ -155,8 +161,21 @@ export default function PlayerControls() {
         <button className="control-btn" onClick={handleNext}>
           <NextIcon className="control-icon" />
         </button>
+
+        <div>
+          <button
+            className="unlike-btn"
+            onClick={() => toggleLike(currentSong)}
+          >
+            {isLiked(currentSong) ? (
+              <LikeIcon className="unlike-icon" />
+            ) : (
+              <UnLikeIcon className="unlike-icon" />
+            )}
+          </button>
+        </div>
+
       </div>
     </>
   );
 }
-

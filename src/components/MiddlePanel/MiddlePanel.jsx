@@ -17,6 +17,8 @@ import ForYou from "../Menu/ForYou/ForYou";
 import Podcast from "../Menu/Podcast/Podcast";
 import Top50 from "../Menu/Top50/Top50";
 
+import PlaylistPage from "../Playlist/PlaylistPage/PlaylistPage.jsx";
+
 
 export default function MiddlePanel() {
   // const { currentView } = useView();
@@ -41,6 +43,8 @@ export default function MiddlePanel() {
             <Route path="/" element={<ForYou />} />
             <Route path="/top50" element={<Top50 />} />
             <Route path="/podcasts" element={<Podcast />} />
+            
+            <Route path="/playlist/:id" element={<PlaylistPage />} />
           </Routes>
         </Suspense>
       </div>
