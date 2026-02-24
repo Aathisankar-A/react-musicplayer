@@ -39,6 +39,22 @@
   transform: translateX(5px);
 }
 
+.playlist a {
+  color: white;
+  text-decoration: none;
+}
+
+.playlist a:hover {
+  color: #c084fc;
+}
+
+.playlist-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 0;
+}
+
 .add-playlist-btn {
   margin-top: 10px;
   width: 100%;
@@ -59,15 +75,6 @@
   background-color: #333;
   color: white;
   transform: scale(1.05);
-}
-
-.playlist-item {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  padding: 4px 0;
 }
 
 .remove-btn {
